@@ -1,8 +1,9 @@
 import unittest
-from diskspace import bytes_to_readable, subprocess_check_output
+import os
 import subprocess
+from diskspace import *
 
-class TestMethods(unittest.TestCase):
+class TestClass(unittest.TestCase):
 
     def test_bytes_to_readable(self):
         blocks = 100
@@ -11,6 +12,9 @@ class TestMethods(unittest.TestCase):
     def test_subprocess_check_output(self):
         path = "/test/"
         self.assertEqual(subprocess_check_output(path),['/test'])
+        
+   def test_show_space_list(self):
+    self.assertIsNone(show_space_list(directory='.', depth=-1, order=True))
 
 suite = unittest.TestLoader().loadTestsFromTestCase(TestMethods)
 unittest.TextTestRunner(verbosity=2).run(suite)
